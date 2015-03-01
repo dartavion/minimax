@@ -6,9 +6,9 @@
         .module('app.board')
         .controller('BoardController', BoardController);
 
-    BoardController.$inject = ['dataservice', '$q', 'logger', '$rootScope'];
+    BoardController.$inject = ['dataservice', '$q', 'logger', '$rootScope', 'BottomSheetService'];
 
-    function BoardController(dataservice, $q, logger, $rootScope) {
+    function BoardController(dataservice, $q, logger, $rootScope, BottomSheetService) {
         var vm = this;
 
         vm.squares = [];
@@ -20,7 +20,6 @@
 
         function activate() {
             var promises = [refreshBoard()];
-
             return $q.all(promises)
                 .then(function() {
                     logger.info('Activated board View');
@@ -42,6 +41,10 @@
 
         function onCommitSelection () {
             console.log('commiting selection');
+        }
+
+        function openBottomSheet() {
+            BottomSheetService.showBottomSheet();
         }
     }
 })();

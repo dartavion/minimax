@@ -1,4 +1,5 @@
-/* global expect */
+/* global describe:false */
+/* global expect:false */
 /* jshint -W117, -W030 */
 describe('BoardController', function () {
     var controller,
@@ -7,7 +8,8 @@ describe('BoardController', function () {
     console.log('board', board);
     beforeEach(function () {
         bard.appModule('app.board');
-        bard.inject('$controller', '$log', '$rootScope', '$q', 'dataservice');
+        bard.inject('$controller', '$log', '$rootScope',
+            '$q', 'dataservice');
     });
 
     beforeEach(function () {
