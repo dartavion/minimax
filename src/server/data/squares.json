@@ -1,29 +1,47 @@
 [
     {
-        "id": 1
+        "name": "c1r1",
+        "class": "border-right border-bottom",
+        "active": true
     },
     {
-        "id": 2
+        "name": "c2r1",
+        "class": "border-bottom border-right",
+        "active": true
     },
     {
-        "id": 3
+        "name": "c3r1",
+        "class": "border-bottom",
+        "active": true
     },
     {
-        "id": 4
+        "name": "c1r2",
+        "class": "border-bottom border-right",
+        "active": true
     },
     {
-        "id": 5
+        "name": "c2r2",
+        "class": "border-bottom border-right",
+        "active": true
     },
     {
-        "id": 6
+        "name": "c3r2",
+        "class": "border-bottom",
+        "active": true
     },
     {
-        "id": 7
+        "name": "c1r3",
+        "class": "border-right",
+        "active": true
     },
     {
-        "id": 8
+        "name": "c2r3",
+        "class": "border-right",
+        "active": true
     },
     {
-        "id": 9
+        "name": "c3r3",
+        "class": "",
+        "active": true
     }
 ]

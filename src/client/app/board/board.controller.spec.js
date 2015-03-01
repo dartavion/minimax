@@ -1,7 +1,8 @@
+/* global expect */
 /* jshint -W117, -W030 */
 describe('BoardController', function () {
     var controller,
-        board = mockData.getMockBoard();
+        board = mockData.getList();
 
     console.log('board', board);
     beforeEach(function () {
@@ -23,10 +24,8 @@ describe('BoardController', function () {
             expect(controller).to.be.defined;
         });
 
-        describe('after activate', function () {
-            it('has 3 groups of 3 squares', function () {
-                expect(controller.squares.length).to.equal(9);
-            });
+        it('calls dataservice getList', function() {
+            expect(dataservice.getList).to.have.been.calledOnce;
         });
     });
 });

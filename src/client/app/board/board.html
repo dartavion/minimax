@@ -1,1 +1,8 @@
-
+<div layout="row" layout-wrap layout-fill>
+    <div ng-repeat="square in vm.squares"
+         ng-click="vm.onCommitSelection(square.name, $event)"
+         class="{{square.class}}"
+         id="{{square.name}}"
+         flex="33">
+    </div>
+</div>

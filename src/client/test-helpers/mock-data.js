@@ -5,6 +5,7 @@ var mockData = (function() {
     };
 
     function getList () {
+        console.log('this get called');
         return [
             {
                 'id': 1
