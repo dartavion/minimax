@@ -6,9 +6,23 @@
         .module('app.board')
         .controller('BoardController', BoardController);
 
-    BoardController.$inject = [];
+    BoardController.$inject = ['dataservice'];
 
-    function BoardController() {
+    function BoardController(dataservice) {
         var vm = this;
+
+        vm.squares = 0;
+
+        activate();
+
+        function activate() {
+            dataservice
+                .getList()
+                .then(function (data) {
+                    console.log(data.length);
+                    vm.squares = data || [];
+                });
+        }
+
     }
 })();

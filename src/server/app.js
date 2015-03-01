@@ -11,6 +11,8 @@ var four0four = require('./utils/404')();
 
 var environment = process.env.NODE_ENV;
 
+var routes = require('./api/index')(app);
+
 app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
