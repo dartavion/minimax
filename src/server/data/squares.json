@@ -1,47 +1,57 @@
 [
     {
-        "name": "c1r1",
+        "name": "00",
         "class": "border-right border-bottom",
-        "active": true
+        "active": true,
+        "position": [0, 0]
     },
     {
-        "name": "c2r1",
+        "name": "01",
         "class": "border-bottom border-right",
-        "active": true
+        "active": true,
+        "position": [0, 1]
     },
     {
-        "name": "c3r1",
+        "name": "02",
         "class": "border-bottom",
-        "active": true
+        "active": true,
+        "position": [0, 2]
     },
     {
-        "name": "c1r2",
+        "name": "10",
         "class": "border-bottom border-right",
-        "active": true
+        "active": true,
+        "position": [1, 0]
+
     },
     {
-        "name": "c2r2",
+        "name": "11",
         "class": "border-bottom border-right",
-        "active": true
+        "active": true,
+        "position": [1, 1]
     },
     {
-        "name": "c3r2",
+        "name": "12",
         "class": "border-bottom",
-        "active": true
+        "active": true,
+        "position": [1, 2]
     },
     {
-        "name": "c1r3",
+        "name": "20",
         "class": "border-right",
-        "active": true
+        "active": true,
+        "position": [2, 0]
     },
     {
-        "name": "c2r3",
+        "name": "21",
         "class": "border-right",
-        "active": true
+        "active": true,
+        "position": [2, 1]
     },
     {
-        "name": "c3r3",
+        "name": "22",
         "class": "",
-        "active": true
+        "active": true,
+        "position": [2, 2]
     }
 ]
