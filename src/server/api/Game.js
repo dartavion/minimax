@@ -1,3 +1,4 @@
+/* jshint -W074, -W030 */
 function TicTacToe() {
 
     this.board = [];
@@ -11,13 +12,13 @@ function TicTacToe() {
 
 }
 
-TicTacToe.prototype.get_board = function() {
+TicTacToe.prototype.get_board = function () {
     return this.board;
 };
 
-TicTacToe.prototype.make_player_move = function(i,j) {
+TicTacToe.prototype.make_player_move = function (i, j) {
     if (!(0 <= i && i <= 2 && 0 <= j && j <= 2) ||
-        this.board[i][j] != '-') {
+        this.board[i][j] !== '-') {
         return false;
     }
 
@@ -25,20 +26,20 @@ TicTacToe.prototype.make_player_move = function(i,j) {
     return true;
 };
 
-TicTacToe.prototype.make_ai_move = function() {
+TicTacToe.prototype.make_ai_move = function () {
     var best_move = alpha_beta(this);
     this.board[best_move[0]][best_move[1]] = 'o';
     return best_move;
 };
 
-TicTacToe.prototype.get_moves = function() {
+TicTacToe.prototype.get_moves = function () {
 
     var moves = [];
 
     for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
-            if(this.board[i][j] == '-') {
-                moves.push([i,j]);
+            if (this.board[i][j] === '-') {
+                moves.push([i, j]);
             }
         }
     }
@@ -47,39 +48,39 @@ TicTacToe.prototype.get_moves = function() {
 
 };
 
-TicTacToe.prototype.is_terminal = function() {
+TicTacToe.prototype.is_terminal = function () {
     var no_spaces = true;
     for (var i = 0; i < 3; i++) {
         for (var j = 0; j < 3; j++) {
-            if(this.board[i][j] == '-') {
+            if (this.board[i][j] === '-') {
                 no_spaces = false;
             }
         }
     }
 
-    return no_spaces || this.get_score() != 0;
+    return no_spaces || this.get_score() !== 0;
 };
 
-TicTacToe.prototype.get_score = function() {
+TicTacToe.prototype.get_score = function () {
     var lines = [], board = this.board;
     lines.push(board[0]);
     lines.push(board[1]);
     lines.push(board[2]);
-    lines.push([board[0][0],board[1][0],board[2][0]]);
-    lines.push([board[0][1],board[1][1],board[2][1]]);
-    lines.push([board[0][2],board[1][2],board[2][2]]);
-    lines.push([board[0][0],board[1][1],board[2][2]]);
-    lines.push([board[2][0],board[1][1],board[0][2]]);
+    lines.push([board[0][0], board[1][0], board[2][0]]);
+    lines.push([board[0][1], board[1][1], board[2][1]]);
+    lines.push([board[0][2], board[1][2], board[2][2]]);
+    lines.push([board[0][0], board[1][1], board[2][2]]);
+    lines.push([board[2][0], board[1][1], board[0][2]]);
 
     for (var i = 0; i < lines.length; i++) {
-        if (lines[i][0] == lines[i][1] &&
-            lines[i][1] == lines[i][2] &&
-            lines[i][0] == 'x') {
+        if (lines[i][0] === lines[i][1] &&
+            lines[i][1] === lines[i][2] &&
+            lines[i][0] === 'x') {
             return 1;
         }
-        if (lines[i][0] == lines[i][1] &&
-            lines[i][1] == lines[i][2] &&
-            lines[i][0] == 'o') {
+        if (lines[i][0] === lines[i][1] &&
+            lines[i][1] === lines[i][2] &&
+            lines[i][0] === 'o') {
             return -1;
         }
     }
@@ -87,8 +88,8 @@ TicTacToe.prototype.get_score = function() {
     return 0;
 };
 
-TicTacToe.prototype.get_next = function(move,player) {
-    if (player == "max") {
+TicTacToe.prototype.get_next = function (move, player) {
+    if (player === 'max') {
         player = 'x';
     } else {
         player = 'o';
@@ -103,34 +104,38 @@ TicTacToe.prototype.get_next = function(move,player) {
 
 function alpha_beta(state) {
 
-    return min_value(state,-100000,100000,true);
+    return min_value(state, -100000, 100000, true);
 
 }
 
-function max_value(state,alpha,beta,is_first) {
+function max_value(state, alpha, beta, is_first) {
 
-    var is_first = is_first || false;
+    var isFirst = is_first || false;
 
     if (state.is_terminal()) {
         return state.get_score();
     }
 
-    var v = -100000, moves = state.get_moves("max"), min, best_move = moves[0];
+    var v = -100000, moves = state.get_moves('max'), min, best_move = moves[0];
 
     for (var i = 0; i < moves.length; i++) {
-        min = min_value(state.get_next(moves[i],"max"),alpha,beta,false);
+        min = min_value(state.get_next(moves[i], 'max'), alpha, beta, false);
         if (min > v) {
             v = min;
             best_move = moves[i];
         }
         if (v >= beta) {
-            if (is_first) return moves[i];
+            if (isFirst) {
+                return moves[i];
+            }
             return v;
         }
-        if (v > alpha) alpha = v;
+        if (v > alpha) {
+            alpha = v;
+        }
     }
 
-    if (is_first) {
+    if (isFirst) {
         return best_move;
     } else {
         return v;
@@ -138,30 +143,34 @@ function max_value(state,alpha,beta,is_first) {
 
 }
 
-function min_value(state,alpha,beta,is_first) {
+function min_value(state, alpha, beta, is_first) {
 
-    var is_first = is_first || false;
+    var isFirst = is_first || false;
 
     if (state.is_terminal()) {
         return state.get_score();
     }
 
-    var v = 100000, moves = state.get_moves("min"), max, best_move = moves[0];
+    var v = 100000, moves = state.get_moves('min'), max, best_move = moves[0];
 
     for (var i = 0; i < moves.length; i++) {
-        max = max_value(state.get_next(moves[i],"min"),alpha,beta,false);
+        max = max_value(state.get_next(moves[i], 'min'), alpha, beta, false);
         if (max < v) {
             v = max;
             best_move = moves[i];
         }
         if (v <= alpha) {
-            if (is_first) return moves[i];
+            if (isFirst) {
+                return moves[i];
+            }
             return v;
         }
-        if (v < beta) beta = v;
+        if (v < beta) {
+            beta = v;
+        }
     }
 
-    if (is_first) {
+    if (isFirst) {
         return best_move;
     } else {
         return v;

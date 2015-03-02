@@ -1,5 +1,6 @@
 /* global describe:false */
 /* global expect:false */
+/* jshint -W117, -W030 */
 describe('Bottom Sheet', function () {
     var controller;
 
@@ -9,14 +10,14 @@ describe('Bottom Sheet', function () {
     });
 
     beforeEach(function () {
-        controller = $controller('BottomSheet')
+        controller = $controller('BottomSheet');
     });
 
     bard.verifyNoOutstandingHttpRequests();
 
     describe('Controller', function () {
-       it('should exist', function () {
-           expect(controller).to.be.defined;
-       });
+        it('should exist', function () {
+            expect(controller).to.be.defined;
+        });
     });
 });
