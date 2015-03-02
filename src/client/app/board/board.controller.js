@@ -59,7 +59,7 @@
             opponent = document.querySelector('#' + id);
             $timeout(function () {
                 angular.element(opponent).click();
-            }, 2000);
+            }, 300);
         }
 
         function sendChoice(choice) {
