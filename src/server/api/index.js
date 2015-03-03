@@ -23,9 +23,12 @@ module.exports = function (app) {
         }
 
         if (req.query.one && req.query.two) {
+            var final = {};
             tictactoe.make_player_move(req.query.one, req.query.two);
             move = tictactoe.make_ai_move();
-            return res.status(200).json(move);
+            final.move = move;
+            final.gameover = tictactoe.is_terminal();
+            return res.status(200).json(final);
         }
     }
 };

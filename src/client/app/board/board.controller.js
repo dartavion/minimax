@@ -67,8 +67,9 @@
             return dataservice
                 .post('board', position)
                 .then(function (data) {
+                    console.log(data);
                     if (!data.gameover) {
-                        nextMove(data);
+                        nextMove(data.move);
                     } else {
                         openBottomSheet();
                         // send server message to start new game
