@@ -1,4 +1,4 @@
-<md-bottom-sheet class="md-grid">
+<md-bottom-sheet class="md-grid" stop-event="touchstart">
     <md-list>
         <md-item ng-repeat="item in vm.items">
             <md-button class="md-grid-item-content" aria-label="{{item.name}}" ng-click="vm.listItemClick($index)">

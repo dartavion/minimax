@@ -8,9 +8,13 @@ module.exports = function (app) {
     app.get(api + '/board/', getBoard);
     app.post(api + '/board/', setMove);
 
+    function newGame () {
+        return new Game();
+    }
+
     function getBoard(req, res, next) {
         var json = jsonfileservice.getJsonFromFile(data + 'squares.json');
-        tictactoe = new Game();
+        tictactoe = newGame();
         return res.status(200).json(json);
     }
 
@@ -28,6 +32,9 @@ module.exports = function (app) {
             move = tictactoe.make_ai_move();
             final.move = move;
             final.gameover = tictactoe.is_terminal();
+            if (tictactoe.is_terminal() === undefined) {
+                final.gameover = tictactoe.is_terminal()
+            }
             return res.status(200).json(final);
         }
     }

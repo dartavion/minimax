@@ -13,8 +13,7 @@
         vm.listItemClick = listItemClick;
 
         vm.items = [
-            {name: 'Play', icon: 'icon-lightning'},
-            {name: 'Watch', icon: 'icon-eye'}
+            {name: 'Play', icon: 'icon-lightning'}
         ];
 
         function listItemClick($index) {

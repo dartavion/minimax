@@ -28,6 +28,9 @@ TicTacToe.prototype.make_player_move = function (i, j) {
 
 TicTacToe.prototype.make_ai_move = function () {
     var best_move = alpha_beta(this);
+    if (best_move === 0) {
+        return;
+    }
     this.board[best_move[0]][best_move[1]] = 'o';
     return best_move;
 };

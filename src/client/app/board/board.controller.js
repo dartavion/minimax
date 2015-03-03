@@ -11,11 +11,13 @@
 
     function BoardController(dataservice, $q, logger, $rootScope, BottomSheetService, $timeout) {
         var vm = this,
+            gameover = false,
             i = 0,
             currentPlayer = true;
 
         vm.squares = [];
         vm.onCommitSelection = onCommitSelection;
+        vm.gameover = gameover;
 
         $rootScope.$on('begin.game', beginGame);
 
@@ -30,6 +32,7 @@
         }
 
         function refreshBoard () {
+            i = 0;
             return dataservice
                 .getList()
                 .then(function (data) {
@@ -62,35 +65,48 @@
             }, 300);
         }
 
+        function reset() {
+            $timeout(function () {
+                refreshBoard();
+            }, 2000);
+            currentPlayer = true;
+            gameover = false;
+        }
+
         function sendChoice(choice) {
             var position = {one: choice[0], two: choice[1]};
             return dataservice
                 .post('board', position)
                 .then(function (data) {
-                    console.log(data);
                     if (!data.gameover) {
                         nextMove(data.move);
                     } else {
+                        if (data.move === undefined) {
+                            reset();
+                            return;
+                        }
+                        nextMove(data.move);
                         openBottomSheet();
-                        // send server message to start new game
+                        logger.info('Game over!!!');
+                        $timeout(function () {
+                            refreshBoard();
+                        }, 2000);
                     }
                 });
         }
 
-        function onCommitSelection(square, event, indexes, index) {
-            var selection = {};
+        function addPlayerChoice(event, piece) {
+            angular.element(event.currentTarget).addClass(piece);
+            angular.element(event.currentTarget).off();
+        }
 
+        function onCommitSelection(square, event, indexes, index) {
             markInactive(index);
 
             if (getPlayer()) {
-                selection['x'] = square;
-                angular.element(event.currentTarget).addClass('x-square');
-                angular.element(event.currentTarget).off();
-
+                addPlayerChoice(event, 'x-square');
             } else {
-                selection['o'] = square;
-                angular.element(event.currentTarget).addClass('o-square');
-                angular.element(event.currentTarget).off();
+                addPlayerChoice(event, 'o-square');
                 sendChoice(indexes);
             }
             increment();
