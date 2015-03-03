@@ -33,7 +33,7 @@ module.exports = function (app) {
             final.move = move;
             final.gameover = tictactoe.is_terminal();
             if (tictactoe.is_terminal() === undefined) {
-                final.gameover = tictactoe.is_terminal()
+                final.gameover = tictactoe.is_terminal();
             }
             return res.status(200).json(final);
         }

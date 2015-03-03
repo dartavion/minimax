@@ -10,7 +10,6 @@
     function boardClick(BottomSheetService) {
         function linker(scope, element, attr) {
             return element.bind(attr.boardClick, function(e) {
-                console.log('working?')
                 if (scope.gameover) {
                     BottomSheetService.show();
                     return e.stopPropagation();
@@ -22,6 +21,6 @@
             restrict: 'A',
             link: linker,
             gameover: '='
-        }
+        };
     }
 })();

@@ -15,6 +15,6 @@
         return {
             restrict: 'A',
             link: linker
-        }
+        };
     }
 })();
